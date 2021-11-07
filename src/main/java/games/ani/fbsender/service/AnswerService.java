@@ -8,7 +8,7 @@ import java.util.List;
 public interface AnswerService {
     Answer create(Answer answer);
     Answer readById(Long id);
-    Answer readByUser(Answer answer);
+    Answer readByUser(User user);
     void delete(Long id);
     void deleteByUser(User user);
     List<Answer> getAll();

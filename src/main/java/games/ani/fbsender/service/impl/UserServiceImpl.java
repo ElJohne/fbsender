@@ -20,12 +20,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
-        return user==null ? null : userRepository.save(user);
+        return userRepository.save(user);
     }
 
     @Override
     public User readById(Long id) {
-        return userRepository.findById(id).isPresent() ? userRepository.findById(id).get() : null;
+        return userRepository.getById(id);
     }
 
     @Override

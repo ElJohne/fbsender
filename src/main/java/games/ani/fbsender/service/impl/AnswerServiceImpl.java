@@ -20,36 +20,36 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public Answer create(Answer answer) {
-        return null;
+        return answerRepository.save(answer);
     }
 
     @Override
     public Answer readById(Long id) {
-        return null;
+        return answerRepository.getById(id);
     }
 
     @Override
-    public Answer readByUser(Answer answer) {
-        return null;
+    public Answer readByUser(User user) {
+        return answerRepository.getByAuthor(user);
     }
 
     @Override
     public void delete(Long id) {
-
+        answerRepository.delete(answerRepository.getById(id));
     }
 
     @Override
     public void deleteByUser(User user) {
-
+        answerRepository.deleteAllByAuthor(user);
     }
 
     @Override
     public List<Answer> getAll() {
-        return null;
+        return answerRepository.findAll();
     }
 
     @Override
     public List<Answer> getAllByUser(User user) {
-        return null;
+        return answerRepository.findAllByAuthor(user);
     }
 }
