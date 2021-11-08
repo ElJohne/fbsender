@@ -10,7 +10,7 @@ import java.util.Objects;
 import static javax.persistence.GenerationType.*;
 
 @Table
-@Entity
+@Entity(name = "users")
 public class User {
     @Id
     @SequenceGenerator(
@@ -22,11 +22,11 @@ public class User {
             strategy = SEQUENCE,
             generator = "user_sequence"
     )
-    private Long id;
+    private long id;
 
     @Column(updatable = false, nullable = false, length = 30)
     @NotBlank(message = "Username cannot be empty")
-    private String Username;
+    private String username;
 
     @Column(updatable = false, nullable = false, length = 18)
     @NotBlank(message = "Password cannot be empty")
@@ -34,7 +34,7 @@ public class User {
 
     @Column(updatable = false, nullable = false, length = 3)
     @NotBlank(message = "Age cannot be empty")
-    private Integer age;
+    private int age;
 
     @Column(updatable = false, nullable = false)
     @Enumerated(EnumType.STRING)
@@ -48,12 +48,10 @@ public class User {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Answer> answers;
 
-    public User(){
+    public User(){}
 
-    }
-
-    public User(@NotBlank(message = "Username cannot be empty") String username, @NotBlank(message = "Password cannot be empty") String password, @NotBlank(message = "Age cannot be empty") Integer age, Sex sex, @Email @NotBlank(message = "Email cannot be blank") String email) {
-        Username = username;
+    public User(String username, String password, Integer age, Sex sex, String email) {
+        this.username = username;
         this.password = password;
         this.age = age;
         this.sex = sex;
@@ -69,11 +67,11 @@ public class User {
     }
 
     public String getUsername() {
-        return Username;
+        return username;
     }
 
     public void setUsername(String username) {
-        Username = username;
+        username = username;
     }
 
     public String getPassword() {
@@ -130,7 +128,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", Username='" + Username + '\'' +
+                ", Username='" + username + '\'' +
                 ", age=" + age +
                 ", sex=" + sex +
                 ", email='" + email + '\'' +

@@ -15,15 +15,7 @@ public class AnswerServiceImpl implements AnswerService {
 
     private AnswerRepository answerRepository;
 
-    @PostConstruct
-    public void AnswerServiceImpl(AnswerRepository answerRepository){
-        this.answerRepository = answerRepository;
-    }
-
-    public AnswerServiceImpl(AnswerRepository answerRepository){
-        this.answerRepository = answerRepository;
-    }
-
+    @Autowired
     public AnswerServiceImpl(){}
 
     @Override

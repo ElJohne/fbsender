@@ -11,7 +11,6 @@ import static javax.persistence.GenerationType.*;
 @Table
 @Entity
 public class Answer {
-
     @Id
     @SequenceGenerator(
             name = "answer_sequence",
@@ -33,9 +32,7 @@ public class Answer {
     @ManyToOne(fetch = FetchType.LAZY)
     private User author;
 
-    public Answer(){
-
-    }
+    public Answer(){}
 
     public Answer(List<Test> tests, String feedback, User user) {
         this.tests = tests;
@@ -67,11 +64,11 @@ public class Answer {
         this.feedback = feedback;
     }
 
-    public User getUser() {
+    public User getAuthor() {
         return author;
     }
 
-    public void setUser(User author) {
+    public void setAuthor(User author) {
         this.author = author;
     }
 
@@ -83,11 +80,11 @@ public class Answer {
         return getId().equals(answer.getId()) &&
                 getTests().equals(answer.getTests()) &&
                 Objects.equals(getFeedback(), answer.getFeedback()) &&
-                author.equals(answer.author);
+                getAuthor().equals(answer.getAuthor());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getTests(), getFeedback(), author);
+        return Objects.hash(getId(), getTests(), getFeedback(), getAuthor());
     }
 }
