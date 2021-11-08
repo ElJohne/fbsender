@@ -6,6 +6,8 @@ import games.ani.fbsender.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service
@@ -13,10 +15,12 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
 
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository){
+    @PostConstruct
+    public void UserServiceImpl(UserRepository userRepository){
         this.userRepository = userRepository;
     }
+
+    public UserServiceImpl(){}
 
     @Override
     public User create(User user) {

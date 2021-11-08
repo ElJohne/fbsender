@@ -7,16 +7,24 @@ import games.ani.fbsender.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service
 public class AnswerServiceImpl implements AnswerService {
+
     private AnswerRepository answerRepository;
 
-    @Autowired
+    @PostConstruct
+    public void AnswerServiceImpl(AnswerRepository answerRepository){
+        this.answerRepository = answerRepository;
+    }
+
     public AnswerServiceImpl(AnswerRepository answerRepository){
         this.answerRepository = answerRepository;
     }
+
+    public AnswerServiceImpl(){}
 
     @Override
     public Answer create(Answer answer) {

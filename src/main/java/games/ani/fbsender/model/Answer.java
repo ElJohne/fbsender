@@ -33,7 +33,9 @@ public class Answer {
     @ManyToOne(fetch = FetchType.LAZY)
     private User author;
 
-    public Answer(){}
+    public Answer(){
+
+    }
 
     public Answer(List<Test> tests, String feedback, User user) {
         this.tests = tests;

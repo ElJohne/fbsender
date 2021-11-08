@@ -48,7 +48,9 @@ public class User {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Answer> answers;
 
-    public User(){}
+    public User(){
+
+    }
 
     public User(@NotBlank(message = "Username cannot be empty") String username, @NotBlank(message = "Password cannot be empty") String password, @NotBlank(message = "Age cannot be empty") Integer age, Sex sex, @Email @NotBlank(message = "Email cannot be blank") String email) {
         Username = username;
