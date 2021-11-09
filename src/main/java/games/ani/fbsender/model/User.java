@@ -22,27 +22,21 @@ public class User {
             strategy = SEQUENCE,
             generator = "user_sequence"
     )
-    private long id;
+    private Long id;
 
-    @Column(updatable = false, nullable = false, length = 30)
-    @NotBlank(message = "Username cannot be empty")
+    @Column(name = "username")
     private String username;
 
-    @Column(updatable = false, nullable = false, length = 18)
-    @NotBlank(message = "Password cannot be empty")
+    @Column
     private String password;
 
-    @Column(updatable = false, nullable = false, length = 3)
-    @NotBlank(message = "Age cannot be empty")
-    private int age;
+    @Column
+    private Integer age;
 
-    @Column(updatable = false, nullable = false)
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
-
     @Email
-    @NotBlank(message = "Email cannot be blank")
     private String email;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)

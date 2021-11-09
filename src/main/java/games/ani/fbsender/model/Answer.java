@@ -26,7 +26,7 @@ public class Answer {
     @ElementCollection
     private List<Test> tests;
 
-    @Column(length = 350, updatable = false)
+    @Column
     private String feedback;
 
     @ManyToOne(fetch = FetchType.LAZY)
