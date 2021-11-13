@@ -17,9 +17,11 @@ import java.util.List;
 public class AnswerController {
 
     private final AnswerService answerService;
+    private final UserService userService;
 
-    public AnswerController(AnswerService answerService) {
+    public AnswerController(AnswerService answerService, UserService userService) {
         this.answerService = answerService;
+        this.userService = userService;
     }
 
     @GetMapping("/list-answers")
@@ -32,9 +34,9 @@ public class AnswerController {
         return new ResponseEntity<>(answerService.readById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/find/{user}")
-    public ResponseEntity<Answer> getAnswerByUser(@PathVariable("user") User user){
-        return new ResponseEntity<>(answerService.readByUser(user), HttpStatus.OK);
+    @GetMapping("/find/{user_id}")
+    public ResponseEntity<Answer> getAnswerByUser(@PathVariable("user_id") Long user_id){
+        return new ResponseEntity<>(answerService.readByUser(userService.readById(user_id)), HttpStatus.OK);
     }
 
     @PostMapping("/new-answer")

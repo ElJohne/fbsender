@@ -87,4 +87,14 @@ public class Answer {
     public int hashCode() {
         return Objects.hash(getId(), getTests(), getFeedback(), getAuthor());
     }
+
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "id=" + id +
+                ", tests=" + tests +
+                ", feedback='" + feedback + '\'' +
+                ", author=" + author +
+                '}';
+    }
 }
