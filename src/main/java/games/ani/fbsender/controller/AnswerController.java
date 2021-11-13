@@ -32,6 +32,11 @@ public class AnswerController {
         return new ResponseEntity<>(answerService.readById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/find/{user}")
+    public ResponseEntity<Answer> getAnswerByUser(@PathVariable("user") User user){
+        return new ResponseEntity<>(answerService.readByUser(user), HttpStatus.OK);
+    }
+
     @PostMapping("/new-answer")
     public ResponseEntity<Answer> addAnswer(@RequestBody Answer answer){
         return new ResponseEntity<>(answerService.create(answer), HttpStatus.CREATED);

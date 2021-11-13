@@ -1,5 +1,6 @@
 package games.ani.fbsender.service.impl;
 
+import games.ani.fbsender.exeption.ApiRequestException;
 import games.ani.fbsender.model.User;
 import games.ani.fbsender.repository.UserRepository;
 import games.ani.fbsender.service.UserService;
@@ -20,23 +21,29 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
-        return userRepository.save(user);
+        if(user != null) return userRepository.save(user);
+        throw new ApiRequestException("Can`t create empty user!");
     }
 
     @Override
     public User readById(Long id) {
-        return userRepository.getById(id);
+        return userRepository.findById(id).orElseThrow(() -> new ApiRequestException(String.format("Can`t find user with id=%d!", id)));
     }
 
     @Override
     public User readByUsername(String username) {
-        return userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
+        if(user != null) return userRepository.findByUsername(username);
+        throw new ApiRequestException(String.format("Can`t find user with username=\"%s\"!", username));
     }
 
     @Override
     public User update(User user) {
-        User oldUser = readById(user.getId());
-        return userRepository.save(user);
+        if (user != null) {
+            readById(user.getId());
+            return userRepository.save(user);
+        }
+        throw new ApiRequestException("Can`t update user!");
     }
 
     @Override
@@ -46,7 +53,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAll() {
-        System.out.println(userRepository.findAll().toString());
         return userRepository.findAll();
     }
 }
